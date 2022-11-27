@@ -1,5 +1,5 @@
 
-formats = ["plain", "bold", "italic", "inline-code", "link", "header", "new-line"]
+formats = ["plain", "bold", "italic", "inline-code", "link", "header", "new-line", "unordered-list", "ordered-list", "!help", "!done"]
 full_text = ""
 def set_plain():
     return (get_text())
@@ -27,18 +27,29 @@ def set_header():
             print("The level should be within the range of 1 to 6")
 
 def set_ordered_list():
-    return (f"1. {get_text()}")
+    section_of_text = str("")
+    rows = int(input("Number of rows: "))
+    for i in range(check_rows(rows)):
+        section_of_text += f"{i + 1}. {get_text()}\n"
+    return section_of_text
 
 def set_unordered_list():
-    return (f"* {get_text()}")
+    section_of_text = ""
+    rows = int(input("Number of rows: "))
+    for i in range(check_rows(rows)):
+        section_of_text += f"* {get_text()}\n"
+    return section_of_text
 
 def set_new_line():
     return "\n"
 
-def check_prompt(prompt):
-    if prompt not in formats:
-        print("Unknown formatting type or command")
-
+def check_rows(rows):
+    while True:
+        if rows <= 0:
+            print("The number of rows should be greater than zero")
+            rows = int(input("Number of rows: "))
+        else:
+            return rows
 def get_text():
     text = input("Text: ")
     return text
@@ -72,7 +83,6 @@ def format_text(prompt):
 while True:
     prompt = input("Choose a formatter: ")
     prompt = prompt.replace(" ", "")
-    check_prompt(prompt)
     if prompt == "!done":
         break
     full_text += format_text(prompt)
