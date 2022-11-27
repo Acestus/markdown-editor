@@ -84,6 +84,9 @@ while True:
     prompt = input("Choose a formatter: ")
     prompt = prompt.replace(" ", "")
     if prompt == "!done":
+        my_file = open("output.md", "w", encoding="utf-8")
+        my_file.write(full_text)
+        my_file.close()
         break
     full_text += format_text(prompt)
     print(full_text)
