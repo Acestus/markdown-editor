@@ -1,9 +1,9 @@
 type: choice
 is_multiple_choice: true
 options:
-- text: a == b
 - text: id(a) == id(b)
 - text: a is b
+- text: a == b
 - text: id(a) is id(b)
 files:
 - name: main.py
